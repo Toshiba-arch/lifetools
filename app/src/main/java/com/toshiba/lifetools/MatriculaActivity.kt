@@ -4,7 +4,11 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONObject
 
 class MatriculaActivity : AppCompatActivity() {
 
@@ -12,58 +16,69 @@ class MatriculaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matricula)
 
-        // Referenciar os elementos do layout
         val etMatricula = findViewById<EditText>(R.id.et_matricula)
         val etVin = findViewById<EditText>(R.id.et_vin)
         val btnSearchByMatricula = findViewById<Button>(R.id.btn_search_by_matricula)
         val btnSearchVehicle = findViewById<Button>(R.id.btn_search_vehicle)
         val tvVehicleInfo = findViewById<TextView>(R.id.tv_vehicle_info)
 
-        // Configurar o clique no botão "Buscar por Matrícula"
         btnSearchByMatricula.setOnClickListener {
-            val matricula = etMatricula.text.toString()
+            val matricula = etMatricula.text.toString().trim()
             if (matricula.isNotEmpty()) {
-                fetchVehicleData(matricula = matricula, vin = "", tvVehicleInfo = tvVehicleInfo)
+                fetchVehicleData(matricula, "", tvVehicleInfo)
             } else {
-                // Caso o campo matrícula esteja vazio, exibe uma mensagem de erro
-                tvVehicleInfo.text = "Por favor, insira a matrícula."
+                Toast.makeText(this, "Por favor, insira uma matrícula.", Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Configurar o clique no botão "Buscar Dados"
         btnSearchVehicle.setOnClickListener {
-            val matricula = etMatricula.text.toString()
-            val vin = etVin.text.toString()
-
-            // Verifica se ao menos um dos campos foi preenchido
+            val matricula = etMatricula.text.toString().trim()
+            val vin = etVin.text.toString().trim()
             if (matricula.isNotEmpty() || vin.isNotEmpty()) {
-                fetchVehicleData(matricula = matricula, vin = vin, tvVehicleInfo = tvVehicleInfo)
+                fetchVehicleData(matricula, vin, tvVehicleInfo)
             } else {
-                // Caso nenhum campo tenha sido preenchido, pode exibir um aviso
-                tvVehicleInfo.text = "Por favor, insira uma matrícula ou VIN."
+                Toast.makeText(this, "Por favor, insira uma matrícula ou VIN.", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    // Função para buscar os dados do veículo
     private fun fetchVehicleData(matricula: String, vin: String, tvVehicleInfo: TextView) {
-        // Aqui será necessário fazer uma chamada à API externa (exemplo fictício)
-        // Após a chamada da API, os dados retornados devem ser exibidos no TextView
-
-        // Exemplo fictício de resposta da API
-        val vehicleInfo = when {
-            matricula.isNotEmpty() -> {
-                "Informações da matrícula $matricula:\nMarca: Exemplo Marca\nModelo: Exemplo Modelo\nAno: 2020"
-            }
-            vin.isNotEmpty() -> {
-                "Informações do VIN $vin:\nMarca: Exemplo Marca\nModelo: Exemplo Modelo\nAno: 2021"
-            }
-            else -> {
-                "Nenhuma informação disponível."
-            }
+        val client = OkHttpClient()
+        val url = if (matricula.isNotEmpty()) {
+            "https://api.carqueryapi.com/v1/matricula?matricula=$matricula"
+        } else {
+            "https://api.carqueryapi.com/v1/vin?vin=$vin"
         }
 
-        // Atualizar a interface com as informações do veículo
-        tvVehicleInfo.text = vehicleInfo
+        val request = Request.Builder()
+            .url(url)
+            .build()
+
+        Thread {
+            try {
+                val response = client.newCall(request).execute()
+                if (response.isSuccessful) {
+                    val responseData = response.body?.string()
+                    val jsonObject = JSONObject(responseData ?: "")
+                    val vehicleInfo = """
+                        Marca: ${jsonObject.getString("make")}
+                        Modelo: ${jsonObject.getString("model")}
+                        Ano: ${jsonObject.getString("year")}
+                    """.trimIndent()
+
+                    runOnUiThread {
+                        tvVehicleInfo.text = vehicleInfo
+                    }
+                } else {
+                    runOnUiThread {
+                        tvVehicleInfo.text = "Erro ao obter dados do veículo."
+                    }
+                }
+            } catch (e: Exception) {
+                runOnUiThread {
+                    tvVehicleInfo.text = "Erro: ${e.message}"
+                }
+            }
+        }.start()
     }
 }

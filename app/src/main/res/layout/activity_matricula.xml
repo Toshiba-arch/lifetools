@@ -7,7 +7,6 @@
     android:gravity="center">
 
     <TextView
-        android:id="@+id/tv_instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Insira a matrícula ou VIN do veículo:"
@@ -17,38 +16,37 @@
     <!-- Campo para matrícula -->
     <EditText
         android:id="@+id/et_matricula"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="(XX-XX-XX)"
+        android:hint="Matrícula (XX-XX-XX)"
         android:inputType="text"
         android:maxLength="8" />
-    
-    <!-- Botão para buscar dados pela matrícula -->
-    <Button
-        android:id="@+id/btn_search_by_matricula"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Buscar por Matrícula"
-        android:layout_marginTop="16dp" />
 
     <!-- Campo para VIN -->
     <EditText
         android:id="@+id/et_vin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="16dp"
         android:hint="VIN"
         android:inputType="text"
         android:maxLength="25" />
 
-    <!-- Botão para buscar dados pela matrícula ou VIN (geral) -->
+    <!-- Botão para buscar pela matrícula -->
+    <Button
+        android:id="@+id/btn_search_by_matricula"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Buscar por Matrícula" />
+
+    <!-- Botão para buscar dados gerais -->
     <Button
         android:id="@+id/btn_search_vehicle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="Buscar Dados" />
 
     <!-- Exibir informações do veículo -->
