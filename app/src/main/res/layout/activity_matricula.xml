@@ -17,29 +17,39 @@
     <!-- Campo para matrícula -->
     <EditText
         android:id="@+id/et_matricula"
-        android:layout_width="189dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Matrícula (XX-XX-XX)"
+        android:hint="(XX-XX-XX)"
         android:inputType="text"
         android:maxLength="8" />
+    
+    <!-- Botão para buscar dados pela matrícula -->
+    <Button
+        android:id="@+id/btn_search_by_matricula"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buscar por Matrícula"
+        android:layout_marginTop="16dp" />
 
     <!-- Campo para VIN -->
     <EditText
         android:id="@+id/et_vin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:hint="VIN"
         android:inputType="text"
-        android:maxLength="17"
-        android:layout_marginBottom="16dp"/>
+        android:maxLength="25" />
 
+    <!-- Botão para buscar dados pela matrícula ou VIN (geral) -->
     <Button
         android:id="@+id/btn_search_vehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Buscar Dados"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:text="Buscar Dados" />
 
     <!-- Exibir informações do veículo -->
     <TextView
