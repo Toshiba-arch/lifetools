@@ -1,25 +1,120 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/background_color"
+    tools:context=".EuromillionsActivity">
 
+    <!-- Título da Página -->
     <TextView
-        android:id="@+id/tv_numbers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Clique no botão para gerar os números"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:padding="8dp" />
-
-    <Button
-        android:id="@+id/btn_generate"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gerar Números"
-        android:layout_gravity="center_horizontal"
-        android:padding="8dp" />
-</LinearLayout>
+        android:text="Gerador Euromilhões"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Card para Números Aleatórios -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_random_numbers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_random_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Números Aleatórios:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_text"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tv_random_generated_numbers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aguardando..."
+                android:textSize="20sp"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btn_generate_random"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gerar Números Aleatórios"
+                android:backgroundTint="@color/primary"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Card para Números com Base em Estatísticas -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_stats_numbers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/card_random_numbers"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_stats_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Números com Base em Estatísticas:"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_text"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tv_stats_generated_numbers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aguardando..."
+                android:textSize="20sp"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btn_generate_based_on_stats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gerar Números com Estatísticas"
+                android:backgroundTint="@color/primary"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

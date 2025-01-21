@@ -6,7 +6,13 @@
         android:label="LifeTools"
         android:theme="@style/Theme.LifeTools">
 
-    <activity
+        <!-- Declarar a EuromillionsActivity -->
+        <activity android:name="com.toshiba.lifetools.EuromillionsActivity">
+            <!-- Outras configurações da activity -->
+        </activity>
+
+        <!-- MainActivity, que é a principal da aplicação -->
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -15,12 +21,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".EuromillionsActivity"
-            android:exported="false" />
-
+        <!-- Outras activities -->
         <activity
             android:name=".OtherToolActivity"
             android:exported="false" />
+
     </application>
+
 </manifest>
