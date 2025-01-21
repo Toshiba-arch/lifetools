@@ -26,4 +26,16 @@
         android:text="Outras aplicações"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
+
+    <!-- Novo botão para a atividade de matrícula ou VIN -->
+    <Button
+        android:id="@+id/btn_matricula"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/purple_700"
+        android:padding="16dp"
+        android:text="Verificar Matrícula / VIN"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 </LinearLayout>

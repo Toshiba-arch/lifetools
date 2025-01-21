@@ -21,6 +21,11 @@
             </intent-filter>
         </activity>
 
+        <!-- Declarar a MatriculaActivity -->
+        <activity
+            android:name=".MatriculaActivity"
+            android:exported="false" />
+
         <!-- Outras activities -->
         <activity
             android:name=".OtherToolActivity"

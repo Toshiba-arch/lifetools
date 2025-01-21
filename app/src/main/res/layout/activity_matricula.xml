@@ -1,0 +1,53 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tv_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Insira a matrícula ou VIN do veículo:"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Campo para matrícula -->
+    <EditText
+        android:id="@+id/et_matricula"
+        android:layout_width="189dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:hint="Matrícula (XX-XX-XX)"
+        android:inputType="text"
+        android:maxLength="8" />
+
+    <!-- Campo para VIN -->
+    <EditText
+        android:id="@+id/et_vin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="VIN"
+        android:inputType="text"
+        android:maxLength="17"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btn_search_vehicle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buscar Dados"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Exibir informações do veículo -->
+    <TextView
+        android:id="@+id/tv_vehicle_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dados do veículo aparecerão aqui."
+        android:textSize="16sp"
+        android:layout_marginTop="32dp"/>
+
+</LinearLayout>
