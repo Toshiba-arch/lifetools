@@ -3,18 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="150dp">
+    android:padding="24dp"
+    android:gravity="center">
 
     <Button
         android:id="@+id/btn_euromillions"
-        android:layout_width="wrap_content"
+        android:layout_width="394dp"
         android:layout_height="wrap_content"
-        android:text="Euromillions" />
+        android:backgroundTint="@color/purple_500"
+        android:padding="16dp"
+        android:text="Euromilhões"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btn_other_tool"
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:text="Other Tool"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/purple_700"
+        android:padding="16dp"
+        android:text="Outras aplicações"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
 </LinearLayout>
